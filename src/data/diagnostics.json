@@ -7522,7 +7522,7 @@
   {
     "id": "private_optional_parameter",
     "description": "_Named parameters can't start with an underscore._",
-    "documentation": "## Description\n\nThe analyzer produces this diagnostic when the name of a named parameter\nstarts with an underscore.\n\n## Example\n\nThe following code produces this diagnostic because the named parameter\n`_x` starts with an underscore:\n\n```dart\n// @dart=3.11\nclass C {\n  void m({int [!_x!] = 0}) {}\n}\n```\n\n## Common fixes\n\nRename the parameter so that it doesn't start with an underscore:\n\n```dart\nclass C {\n  void m({int x = 0}) {}\n}\n```\n",
+    "documentation": "## Description\n\nThe analyzer produces this diagnostic when the name of a named parameter\nstarts with an underscore.\n\nIn Dart 3.12 and later, this restriction doesn't apply to named initializing\nformals (`this._name`) or named super parameters (`super._name`).\n\n## Example\n\nThe following code produces this diagnostic because the named parameter\n`_x` starts with an underscore:\n\n```dart\n// @dart=3.11\nclass C {\n  void m({int [!_x!] = 0}) {}\n}\n```\n\n## Common fixes\n\nRename the parameter so that it doesn't start with an underscore:\n\n```dart\nclass C {\n  void m({int x = 0}) {}\n}\n```\n\nIf the parameter is a named initializing formal (`this._name`) or a named\nsuper parameter (`super._name`), you can keep the underscore-prefixed name\nby setting your SDK constraint to require Dart 3.12 or later:\n\n```dart\nclass C {\n  final int _x;\n  C({required this._x});\n}\n```\n",
     "hasDocumentation": true,
     "fromLint": false,
     "previousNames": []
